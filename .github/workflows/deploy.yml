@@ -3,7 +3,9 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main  # デプロイしたいブランチ（例: main）
+      - main
+    paths:
+      - 'src/**'
   workflow_dispatch:
 
 jobs:
@@ -34,7 +36,7 @@ jobs:
     - name: Sync files to S3
       # TODO build成果物をいじるときに書き直し
       run: |
-        aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete --exclude "*.DS_Store" --exclude ".git/*" --exclude ".github/*" --exclude "README.md"
+        aws s3 sync ./src s3://${{ secrets.S3_BUCKET_NAME }} --delete"
     
     - name: Invalidate CloudFront Cache
       run: |
