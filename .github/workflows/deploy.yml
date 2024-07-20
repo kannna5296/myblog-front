@@ -1,9 +1,10 @@
 name: Deploy Vue.js App to S3
 
-on:
-  push:
-    branches:
-      - main  # デプロイしたいブランチ（例: main）
+# on:
+#   push:
+#     branches:
+#       - main  # デプロイしたいブランチ（例: main）
+workflow_dispatch:
 
 jobs:
   deploy:
