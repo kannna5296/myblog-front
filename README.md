@@ -14,3 +14,6 @@ Route53とCloudFrontとS3でサイトデプロイする時
   - BUCKET POLICY getObject ON（JSONによる）
   - Route53戻ってホスティング用のURLをA レコード（alias ON）として設定
 - CloufFrontのディストリビューション作る
+
+コンポーネントは遅延ローディングが良い
+https://qiita.com/s-yoshi210/items/adf3e112e461371b738c
