@@ -31,7 +31,7 @@ const login = async () => {
       password: password.value,
     });
     localStorage.setItem("token", response.data.token);
-    router.push("/posts");
+    router.push("/post");
   } catch (error) {
     console.error("Failed to login", error);
   }

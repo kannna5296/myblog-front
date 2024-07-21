@@ -27,7 +27,7 @@ const content = ref("");
 
 const fetchPost = async () => {
   try {
-    const response = await axios.get(`/api/posts/${route.params.id}`);
+    const response = await axios.get(`/api/post/${route.params.id}`);
     title.value = response.data.title;
     content.value = response.data.content;
   } catch (error) {
@@ -37,11 +37,11 @@ const fetchPost = async () => {
 
 const editPost = async () => {
   try {
-    await axios.put(`/api/posts/${route.params.id}`, {
+    await axios.put(`/api/post/${route.params.id}`, {
       title: title.value,
       content: content.value,
     });
-    router.push("/posts");
+    router.push("/post");
   } catch (error) {
     console.error("Failed to edit post", error);
   }

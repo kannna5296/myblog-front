@@ -19,7 +19,7 @@ const postId = ref<number>(1); // Replace with actual post ID
 
 const createComment = async () => {
   try {
-    await axios.post(`/api/posts/${postId.value}/comments`, {
+    await axios.post(`/api/post/${postId.value}/comment`, {
       content: content.value,
     });
     content.value = "";

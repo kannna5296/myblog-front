@@ -23,7 +23,7 @@ const postId = ref<number>(1); // Replace with actual post ID
 
 const fetchComments = async () => {
   try {
-    const response = await axios.get(`/api/posts/${postId.value}/comments`);
+    const response = await axios.get(`/api/post/${postId.value}/comment`);
     comments.value = response.data;
   } catch (error) {
     console.error("Failed to fetch comments", error);

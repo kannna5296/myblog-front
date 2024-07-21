@@ -22,7 +22,7 @@ const post = ref<Post | null>(null);
 
 const fetchPost = async () => {
   try {
-    const response = await axios.get(`/api/posts/${route.params.id}`);
+    const response = await axios.get(`/api/post/${route.params.id}`);
     post.value = response.data;
   } catch (error) {
     console.error("Failed to fetch post", error);

@@ -26,7 +26,7 @@ const router = useRouter();
 
 const createPost = async () => {
   try {
-    await axios.post("/api/posts", {
+    await axios.post("/api/post", {
       title: title.value,
       content: content.value,
     });

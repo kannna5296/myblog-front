@@ -22,7 +22,7 @@ const posts = ref<Post[]>([]);
 
 const fetchPosts = async () => {
   try {
-    const response = await axios.get("/api/posts");
+    const response = await axios.get("/api/post");
     posts.value = response.data;
   } catch (error) {
     console.error("Failed to fetch posts", error);
