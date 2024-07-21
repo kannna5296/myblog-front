@@ -16,16 +16,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    # - name: Set up Node.js
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: '18'  # 必要なNode.jsのバージョン
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
     
-    # - name: Install dependencies
-    #   run: npm install
+    - name: Install dependencies
+      run: npm install
     
-    # - name: Build the project
-    #   run: npm run build
+    - name: Build the project
+      run: npm run build
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -34,9 +35,8 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
     
     - name: Sync files to S3
-      # TODO build成果物をいじるときに書き直し
       run: |
-        aws s3 sync ./src s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }} --delete
     
     - name: Invalidate CloudFront Cache
       run: |
