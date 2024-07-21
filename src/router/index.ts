@@ -29,6 +29,10 @@ const routes = [
     path: "/posts/edit/:id",
     component: () => import("@/components/EditPost.vue"),
   },
+  {
+    path: "/:catchAll(.*)",
+    component: () => import("@/components/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({
