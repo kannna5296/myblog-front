@@ -15,7 +15,22 @@ Route53とCloudFrontとS3でサイトデプロイする時
   - Route53戻ってホスティング用のURLをA レコード（alias ON）として設定
 - CloufFrontのディストリビューション作る
 
-## GPT
+### はまりポイント1: ACMによる証明書発行はus-east-1でやらないといけない
+
+Amazon で ACM 証明書を使用するには CloudFront、米国東部 (バージニア北部) リージョンで証明書をリクエストまたはインポートする必要があります。 CloudFront ディストリビューションに関連付けられているこのリージョンの ACM 証明書は、そのディストリビューションに設定されたすべての地理的場所に配布されます。
+
+https://docs.aws.amazon.com/ja_jp/acm/latest/userguide/acm-regions.html
+
+### はまりポイント２： vueと組み合わせる場合、CloudFront側でエラーページ設定が要る
+
+* CloudFront > ディストリビューション > エラーページから「404が帰ってきた場合もs3の/index.html返して,Responseは200OKで」な感じにする
+* これやらないとvue routerのページングがちゃんと動かず404になっちゃう
+* 多分vue側で404ページ作ってる時とかも必要
+
+### 備忘: ドメイン「example.com」を設定するなら、後々のこと考えて「*.example.com」も一緒に撮った方がベターかも？？
+
+
+## GPTがしゃべったことメモするだけ
 2. S3 バケットの作成と設定
 S3 バケットの作成:
 
