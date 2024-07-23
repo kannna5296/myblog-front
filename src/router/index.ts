@@ -14,19 +14,19 @@ const routes = [
     component: () => import("@/components/UserRegister.vue"),
   },
   {
-    path: "/posts",
+    path: "/post",
     component: () => import("@/components/PostList.vue"),
   },
   {
-    path: "/posts:id",
+    path: "/post:id",
     component: () => import("@/components/PostDetail.vue"),
   },
   {
-    path: "/posts/create",
+    path: "/post/create",
     component: () => import("@/components/CreatePost.vue"),
   },
   {
-    path: "/posts/edit/:id",
+    path: "/post/edit/:id",
     component: () => import("@/components/EditPost.vue"),
   },
   {

@@ -30,7 +30,7 @@ const createPost = async () => {
       title: title.value,
       content: content.value,
     });
-    router.push("/posts");
+    router.push("/post");
   } catch (error) {
     console.error("Failed to create post", error);
   }
