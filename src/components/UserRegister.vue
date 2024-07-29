@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
+import axiosInstance from "@/router/axios";
 
 const username = ref("");
 const email = ref("");
@@ -31,7 +31,7 @@ const router = useRouter();
 
 const register = async () => {
   try {
-    await axios.post("/api/auth/register", {
+    await axiosInstance.post("/api/auth/register", {
       username: username.value,
       email: email.value,
       password: password.value,
