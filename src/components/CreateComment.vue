@@ -12,14 +12,14 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from "axios";
+import axiosInstance from '@/router/axios';
 
 const content = ref("");
 const postId = ref<number>(1); // Replace with actual post ID
 
 const createComment = async () => {
   try {
-    await axios.post(`/api/post/${postId.value}/comment`, {
+    await axiosInstance.post(`/api/post/${postId.value}/comment`, {
       content: content.value,
     });
     content.value = "";

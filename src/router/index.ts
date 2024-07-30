@@ -18,7 +18,7 @@ const routes = [
     component: () => import("@/components/PostList.vue"),
   },
   {
-    path: "/post:id",
+    path: "/post/:id",
     component: () => import("@/components/PostDetail.vue"),
   },
   {

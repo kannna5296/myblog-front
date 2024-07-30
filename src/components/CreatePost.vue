@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
+import axiosInstance from '@/router/axios';
 
 const title = ref("");
 const content = ref("");
@@ -26,7 +26,7 @@ const router = useRouter();
 
 const createPost = async () => {
   try {
-    await axios.post("/api/post", {
+    await axiosInstance.post("/api/post", {
       title: title.value,
       content: content.value,
     });

@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import axios from "axios";
+import axiosInstance from '@/router/axios';
 
 interface Comment {
   id: number;
@@ -23,7 +23,7 @@ const postId = ref<number>(1); // Replace with actual post ID
 
 const fetchComments = async () => {
   try {
-    const response = await axios.get(`/api/post/${postId.value}/comment`);
+    const response = await axiosInstance.get(`/api/post/${postId.value}/comment`);
     comments.value = response.data;
   } catch (error) {
     console.error("Failed to fetch comments", error);

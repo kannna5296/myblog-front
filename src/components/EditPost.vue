@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import axios from "axios";
+import axiosInstance from '@/router/axios';
 
 const route = useRoute();
 const router = useRouter();
@@ -27,7 +27,7 @@ const content = ref("");
 
 const fetchPost = async () => {
   try {
-    const response = await axios.get(`/api/post/${route.params.id}`);
+    const response = await axiosInstance.get(`/api/post/${route.params.id}`);
     title.value = response.data.title;
     content.value = response.data.content;
   } catch (error) {
@@ -37,7 +37,7 @@ const fetchPost = async () => {
 
 const editPost = async () => {
   try {
-    await axios.put(`/api/post/${route.params.id}`, {
+    await axiosInstance.put(`/api/post/${route.params.id}`, {
       title: title.value,
       content: content.value,
     });

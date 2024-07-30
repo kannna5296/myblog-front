@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import axiosInstance from '@/router/axios'; // 作成したaxiosインスタンスをインポート
+import axiosInstance from '@/router/axios'; 
 
 interface Post {
   postId: string;
