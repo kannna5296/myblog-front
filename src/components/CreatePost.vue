@@ -12,6 +12,7 @@
       </div>
       <button type="submit">Create</button>
     </form>
+    <router-link to="/post">Back to Posts</router-link>
   </div>
 </template>
 

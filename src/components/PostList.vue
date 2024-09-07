@@ -36,5 +36,6 @@ fetchPosts();
         <router-link :to="`/post/${post.postId}`">{{ post.title }}</router-link>
       </li>
     </ul>
+    <router-link to="/post/create">投稿する</router-link>
   </div>
 </template>
