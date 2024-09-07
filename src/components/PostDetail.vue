@@ -22,7 +22,13 @@ const post = ref<Post | null>(null);
 
 const fetchPost = async () => {
   try {
-    const response = await axiosInstance.get(`/api/post/${route.params.id}`);
+    const jwtToken = localStorage.getItem('token');
+    const response = await axiosInstance.get(`/api/post/${route.params.id}`,{
+    headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            }
+          }
+    );
     post.value = response.data;
   } catch (error) {
     console.error("Failed to fetch post", error);

@@ -30,7 +30,7 @@ const login = async () => {
       email: email.value,
       password: password.value,
     });
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.data.jwt);
     router.push("/post");
   } catch (error) {
     console.error("Failed to login", error);

@@ -10,7 +10,12 @@ interface Post {
 const posts = ref<Post[]>([]);
 
 const fetchPosts = () => {
-  axiosInstance.get('/api/post')
+  const jwtToken = localStorage.getItem('token');
+  axiosInstance.get('/api/post', {
+    headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            }
+  })
     .then(response => {
       posts.value.push(response.data);
     })

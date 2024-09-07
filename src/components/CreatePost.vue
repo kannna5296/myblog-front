@@ -26,11 +26,17 @@ const router = useRouter();
 
 const createPost = async () => {
   try {
-    await axiosInstance.post("/api/post", {
+    const jwtToken = localStorage.getItem('token');
+    axiosInstance.post('/api/post', 
+    {
       title: title.value,
       content: content.value,
-    });
-    router.push("/post");
+    },
+    {
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`
+      },
+  })
   } catch (error) {
     console.error("Failed to create post", error);
   }
