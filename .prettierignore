@@ -1,0 +1,11 @@
+node_modules
+package.json
+package-lock.json
+*.ts
+*.js
+*.vue
+*.html
+!*.json
+!*.yml
+!*.yaml
+!*.md

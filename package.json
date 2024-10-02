@@ -5,8 +5,9 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
-    "lint": "eslint --fix --ext .vue,.ts '.'",
-    "prettier": "prettier --check '.'"
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ext .vue,.ts '.'",
+    "lint:prettier": "prettier --check '.'"
   },
   "dependencies": {
     "axios": "^1.7.2",
