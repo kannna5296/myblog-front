@@ -6,8 +6,11 @@
     "serve": "vite",
     "build": "vite build",
     "lint": "npm run lint:eslint && npm run lint:prettier",
-    "lint:eslint": "eslint --fix --ext .vue,.ts '.'",
-    "lint:prettier": "prettier --write '.'"
+    "lint:eslint": "eslint --ext .vue,.ts '.'",
+    "lint:prettier": "prettier --check '.'",
+    "fix": "npm run fix:eslint && npm run fix:prettier",
+    "fix:eslint": "eslint --fix --ext .vue,.ts '.'",
+    "fix:prettier": "prettier --write '.'"
   },
   "dependencies": {
     "axios": "^1.7.2",
