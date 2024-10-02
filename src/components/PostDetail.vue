@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import {ref, onMounted} from 'vue';
+import {useRoute} from 'vue-router';
 import axiosInstance from '@/router/axios';
 
 interface Post {
@@ -23,15 +23,15 @@ const post = ref<Post | null>(null);
 const fetchPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
-    const response = await axiosInstance.get(`/api/post/${route.params.id}`,{
-    headers: {
-                'Authorization': `Bearer ${jwtToken}`
-            }
-          }
+    const response = await axiosInstance.get(`/api/post/${route.params.id}`, {
+      headers: {
+        'Authorization': `Bearer ${jwtToken}`,
+      },
+    },
     );
     post.value = response.data;
   } catch (error) {
-    console.error("Failed to fetch post", error);
+    console.error('Failed to fetch post', error);
   }
 };
 

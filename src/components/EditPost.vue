@@ -16,14 +16,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import {ref, onMounted} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
 import axiosInstance from '@/router/axios';
 
 const route = useRoute();
 const router = useRouter();
-const title = ref("");
-const content = ref("");
+const title = ref('');
+const content = ref('');
 
 const fetchPost = async () => {
   try {
@@ -31,7 +31,7 @@ const fetchPost = async () => {
     title.value = response.data.title;
     content.value = response.data.content;
   } catch (error) {
-    console.error("Failed to fetch post", error);
+    console.error('Failed to fetch post', error);
   }
 };
 
@@ -41,9 +41,9 @@ const editPost = async () => {
       title: title.value,
       content: content.value,
     });
-    router.push("/post");
+    router.push('/post');
   } catch (error) {
-    console.error("Failed to edit post", error);
+    console.error('Failed to edit post', error);
   }
 };
 

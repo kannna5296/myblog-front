@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
-    "lint": "eslint src"
+    "lint": "eslint --fix --ext .vue,.ts '.'"
   },
   "dependencies": {
     "axios": "^1.7.2",

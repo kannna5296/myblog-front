@@ -20,25 +20,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import axiosInstance from "@/router/axios";
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import axiosInstance from '@/router/axios';
 
-const username = ref("");
-const email = ref("");
-const password = ref("");
+const username = ref('');
+const email = ref('');
+const password = ref('');
 const router = useRouter();
 
 const register = async () => {
   try {
-    await axiosInstance.post("/api/auth/register", {
+    await axiosInstance.post('/api/auth/register', {
       username: username.value,
       email: email.value,
       password: password.value,
     });
-    router.push("/login");
+    router.push('/login');
   } catch (error) {
-    console.error("Failed to register", error);
+    console.error('Failed to register', error);
   }
 };
 </script>

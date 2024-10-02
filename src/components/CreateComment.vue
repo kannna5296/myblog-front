@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import {ref} from 'vue';
 import axiosInstance from '@/router/axios';
 
-const content = ref("");
+const content = ref('');
 const postId = ref<number>(1); // Replace with actual post ID
 
 const createComment = async () => {
@@ -22,10 +22,10 @@ const createComment = async () => {
     await axiosInstance.post(`/api/post/${postId.value}/comment`, {
       content: content.value,
     });
-    content.value = "";
+    content.value = '';
     // Optionally, fetch comments again or update the comment list
   } catch (error) {
-    console.error("Failed to create comment", error);
+    console.error('Failed to create comment', error);
   }
 };
 </script>
