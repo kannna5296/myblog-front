@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref } from 'vue';
 import axiosInstance from '@/router/axios';
 
 interface Post {
@@ -13,15 +13,15 @@ const fetchPosts = () => {
   const jwtToken = localStorage.getItem('token');
   axiosInstance.get('/api/post', {
     headers: {
-      'Authorization': `Bearer ${jwtToken}`,
+      Authorization: `Bearer ${jwtToken}`,
     },
   })
-      .then((response) => {
-        posts.value.push(response.data);
-      })
-      .catch((error) => {
-        console.error('Failed to fetch posts', error);
-      });
+    .then((response) => {
+      posts.value.push(response.data);
+    })
+    .catch((error) => {
+      console.error('Failed to fetch posts', error);
+    });
 };
 
 fetchPosts();

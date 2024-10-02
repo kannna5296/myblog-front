@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
-import {useRouter} from 'vue-router';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import axiosInstance from '@/router/axios';
 
 const title = ref('');
@@ -39,16 +39,18 @@ const router = useRouter();
 const createPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
-    axiosInstance.post('/api/post',
-        {
-          title: title.value,
-          content: content.value,
+    axiosInstance.post(
+      '/api/post',
+      {
+        title: title.value,
+        content: content.value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
         },
-        {
-          headers: {
-            'Authorization': `Bearer ${jwtToken}`,
-          },
-        });
+      },
+    );
   } catch (error) {
     console.error('Failed to create post', error);
   }

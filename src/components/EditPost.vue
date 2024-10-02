@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
-import {useRoute, useRouter} from 'vue-router';
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import axiosInstance from '@/router/axios';
 
 const route = useRoute();

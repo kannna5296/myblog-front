@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue';
+import { ref, onMounted } from 'vue';
 import axiosInstance from '@/router/axios';
 
 interface Comment {
