@@ -5,6 +5,6 @@ interface ImportMetaEnv {
     // 他の環境変数もここに追加できます
   }
 
-  interface ImportMeta {
-    readonly env: ImportMetaEnv;
-  }
+interface ImportMeta { // eslint-disable-line
+  readonly env: ImportMetaEnv;
+}

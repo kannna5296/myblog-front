@@ -29,12 +29,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import axiosInstance from '@/router/axios';
 
 const title = ref('');
 const content = ref('');
-const router = useRouter();
 
 const createPost = async () => {
   try {

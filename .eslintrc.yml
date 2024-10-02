@@ -2,7 +2,7 @@ env:
   browser: true
   es2021: true
 extends:
-  - 'plugin:vue/vue3-recommended'
+  - plugin:vue/vue3-recommended
   - airbnb
 parserOptions:
   ecmaVersion: 12
@@ -11,8 +11,13 @@ parserOptions:
 settings:
   import/resolver:
     typescript:
-      project: "."
+      project: "./src"
 plugins:
   - vue
   - '@typescript-eslint'
-rules: {}
+rules: 
+  import/extensions: #importの時に拡張子要るで〜
+    - error
+    - never
+    - js: never
+      ts: never
