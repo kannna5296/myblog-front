@@ -2,7 +2,10 @@
   <div>
     <h3>Comments</h3>
     <ul>
-      <li v-for="comment in comments" :key="comment.id">
+      <li
+        v-for="comment in comments"
+        :key="comment.id"
+      >
         {{ comment.content }}
       </li>
     </ul>
@@ -10,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted } from 'vue';
 import axiosInstance from '@/router/axios';
 
 interface Comment {
@@ -26,7 +29,7 @@ const fetchComments = async () => {
     const response = await axiosInstance.get(`/api/post/${postId.value}/comment`);
     comments.value = response.data;
   } catch (error) {
-    console.error("Failed to fetch comments", error);
+    console.error('Failed to fetch comments', error);
   }
 };
 

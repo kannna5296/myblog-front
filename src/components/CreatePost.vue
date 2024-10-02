@@ -4,42 +4,53 @@
     <form @submit.prevent="createPost">
       <div>
         <label for="title">Title:</label>
-        <input type="text" v-model="title" required />
+        <input
+          v-model="title"
+          type="text"
+          required
+        >
       </div>
       <div>
         <label for="content">Content:</label>
-        <textarea v-model="content" required></textarea>
+        <textarea
+          v-model="content"
+          required
+        />
       </div>
-      <button type="submit">Create</button>
+      <button type="submit">
+        Create
+      </button>
     </form>
-    <router-link to="/post">Back to Posts</router-link>
+    <router-link to="/post">
+      Back to Posts
+    </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref } from 'vue';
 import axiosInstance from '@/router/axios';
 
-const title = ref("");
-const content = ref("");
-const router = useRouter();
+const title = ref('');
+const content = ref('');
 
 const createPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
-    axiosInstance.post('/api/post', 
-    {
-      title: title.value,
-      content: content.value,
-    },
-    {
-      headers: {
-        'Authorization': `Bearer ${jwtToken}`
+    axiosInstance.post(
+      '/api/post',
+      {
+        title: title.value,
+        content: content.value,
       },
-  })
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      },
+    );
   } catch (error) {
-    console.error("Failed to create post", error);
+    console.error('Failed to create post', error);
   }
 };
 </script>

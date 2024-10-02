@@ -5,11 +5,18 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
-    "lint": "eslint src"
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ext .vue,.ts '.'",
+    "lint:prettier": "prettier --check '.'",
+    "fix": "npm run fix:eslint && npm run fix:prettier",
+    "fix:eslint": "eslint --fix --ext .vue,.ts '.'",
+    "fix:prettier": "prettier --write '.'"
   },
   "dependencies": {
     "axios": "^1.7.2",
     "core-js": "^3.8.3",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3",
@@ -26,10 +33,11 @@
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
-    "prettier": "^2.4.1",
+    "prettier": "^2.8.8",
     "ts-jest": "^27.0.4",
     "typescript": "~4.5.5",
     "vite": "^5.3.5"
