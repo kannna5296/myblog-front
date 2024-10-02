@@ -4,13 +4,23 @@
     <form @submit.prevent="login">
       <div>
         <label for="email">Email:</label>
-        <input type="email" v-model="email" required />
+        <input
+          v-model="email"
+          type="email"
+          required
+        >
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" v-model="password" required />
+        <input
+          v-model="password"
+          type="password"
+          required
+        >
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">
+        Login
+      </button>
     </form>
   </div>
 </template>

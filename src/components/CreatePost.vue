@@ -4,15 +4,26 @@
     <form @submit.prevent="createPost">
       <div>
         <label for="title">Title:</label>
-        <input type="text" v-model="title" required />
+        <input
+          v-model="title"
+          type="text"
+          required
+        >
       </div>
       <div>
         <label for="content">Content:</label>
-        <textarea v-model="content" required></textarea>
+        <textarea
+          v-model="content"
+          required
+        />
       </div>
-      <button type="submit">Create</button>
+      <button type="submit">
+        Create
+      </button>
     </form>
-    <router-link to="/post">Back to Posts</router-link>
+    <router-link to="/post">
+      Back to Posts
+    </router-link>
   </div>
 </template>
 

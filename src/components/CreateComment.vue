@@ -3,9 +3,14 @@
     <h3>Add Comment</h3>
     <form @submit.prevent="createComment">
       <div>
-        <textarea v-model="content" required></textarea>
+        <textarea
+          v-model="content"
+          required
+        />
       </div>
-      <button type="submit">Add Comment</button>
+      <button type="submit">
+        Add Comment
+      </button>
     </form>
   </div>
 </template>

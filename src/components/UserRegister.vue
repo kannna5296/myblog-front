@@ -4,17 +4,31 @@
     <form @submit.prevent="register">
       <div>
         <label for="username">Username:</label>
-        <input type="text" v-model="username" required />
+        <input
+          v-model="username"
+          type="text"
+          required
+        >
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" v-model="email" required />
+        <input
+          v-model="email"
+          type="email"
+          required
+        >
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" v-model="password" required />
+        <input
+          v-model="password"
+          type="password"
+          required
+        >
       </div>
-      <button type="submit">Register</button>
+      <button type="submit">
+        Register
+      </button>
     </form>
   </div>
 </template>

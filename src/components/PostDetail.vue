@@ -2,7 +2,9 @@
   <div>
     <h2>{{ post?.title }}</h2>
     <p>{{ post?.content }}</p>
-    <router-link to="/post">Back to Posts</router-link>
+    <router-link to="/post">
+      Back to Posts
+    </router-link>
   </div>
 </template>
 

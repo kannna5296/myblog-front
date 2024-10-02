@@ -31,11 +31,20 @@ fetchPosts();
   <div>
     <h2>Posts</h2>
     <ul>
-      <li v-if="posts.length === 0">Loading...</li>
-      <li v-for="post in posts" :key="post.postId">
-        <router-link :to="`/post/${post.postId}`">{{ post.title }}</router-link>
+      <li v-if="posts.length === 0">
+        Loading...
+      </li>
+      <li
+        v-for="post in posts"
+        :key="post.postId"
+      >
+        <router-link :to="`/post/${post.postId}`">
+          {{ post.title }}
+        </router-link>
       </li>
     </ul>
-    <router-link to="/post/create">投稿する</router-link>
+    <router-link to="/post/create">
+      投稿する
+    </router-link>
   </div>
 </template>
