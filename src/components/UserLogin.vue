@@ -30,8 +30,8 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axiosInstance from '@/router/axios';
 
-const email = ref('');
-const password = ref('');
+const email = ref('admin@example.com');
+const password = ref('pass123');
 const router = useRouter();
 
 const login = async () => {
@@ -39,7 +39,7 @@ const login = async () => {
     const response = await axiosInstance.post('/api/auth/login', {
       email: email.value,
       password: password.value,
-    });
+    }, { withCredentials: true }); // TODO これ無くすとどうなる
     localStorage.setItem('token', response.data.jwt);
     router.push('/post');
   } catch (error) {

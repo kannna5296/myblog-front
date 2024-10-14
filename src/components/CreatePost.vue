@@ -34,6 +34,17 @@ import axiosInstance from '@/router/axios';
 const title = ref('');
 const content = ref('');
 
+const getCsrfToken = () => {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('XSRF-TOKEN='))
+    ?.split('=')[1];
+  console.log(`cookie!!${document.cookie}`);
+  console.log(`cookie${cookieValue}`);
+  return cookieValue;
+};
+
+// TODO X-XSRF-TOKENヘッダをつける！！！！
 const createPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
@@ -42,10 +53,12 @@ const createPost = async () => {
       {
         title: title.value,
         content: content.value,
+        userId: '1', // TODO あとでユーザ情報拾う
       },
       {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
+          'X-XSRF-TOKEN': getCsrfToken(),
         },
       },
     );
