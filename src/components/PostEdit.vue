@@ -56,8 +56,6 @@ const getCsrfToken = () => {
     .split('; ')
     .find((row) => row.startsWith('XSRF-TOKEN='))
     ?.split('=')[1];
-  console.log(`cookie!!${document.cookie}`);
-  console.log(`cookie${cookieValue}`);
   return cookieValue;
 };
 
