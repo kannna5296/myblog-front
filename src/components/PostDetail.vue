@@ -2,9 +2,16 @@
   <div>
     <h2>{{ post?.title }}</h2>
     <p>{{ post?.content }}</p>
-    <router-link to="/post">
-      Back to Posts
-    </router-link>
+    <div>
+      <router-link to="/post">
+        Back to Posts
+      </router-link>
+    </div>
+    <div>
+      <router-link :to="{ name: 'postEdit', params: { id: post?.id } }">
+        Edit
+      </router-link>
+    </div>
   </div>
 </template>
 

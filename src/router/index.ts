@@ -7,27 +7,33 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'userLogin',
     component: () => import('@/components/UserLogin.vue'),
   },
   {
     path: '/register',
+    name: 'userRegister',
     component: () => import('@/components/UserRegister.vue'),
   },
   {
     path: '/post',
+    name: 'postList',
     component: () => import('@/components/PostList.vue'),
   },
   {
     path: '/post/:id',
+    name: 'postDetail',
     component: () => import('@/components/PostDetail.vue'),
   },
   {
     path: '/post/create',
+    name: 'postCreate',
     component: () => import('@/components/CreatePost.vue'),
   },
   {
     path: '/post/edit/:id',
-    component: () => import('@/components/EditPost.vue'),
+    name: 'postEdit',
+    component: () => import('@/components/PostEdit.vue'),
   },
   {
     path: '/:catchAll(.*)',
