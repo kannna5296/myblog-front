@@ -30,9 +30,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axiosInstance from '@/router/axios';
+import { useRouter } from 'vue-router';
 
 const title = ref('');
 const content = ref('');
+
+const router = useRouter();
 
 const getCsrfToken = () => {
   const cookieValue = document.cookie
@@ -45,7 +48,7 @@ const getCsrfToken = () => {
 const createPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
-    axiosInstance.post(
+    const response = await axiosInstance.post(// awaitしないと詳細画面でうまく最新化されない
       '/api/post',
       {
         title: title.value,
@@ -59,6 +62,7 @@ const createPost = async () => {
         },
       },
     );
+    router.replace({ name: 'postDetail', params: { id: response.data.postId } });
   } catch (error) {
     console.error('Failed to create post', error);
   }
