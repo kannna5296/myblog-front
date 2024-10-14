@@ -62,7 +62,7 @@ const getCsrfToken = () => {
 const editPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
-    axiosInstance.put(
+    await axiosInstance.put( // awaitしないと詳細画面でうまく最新化されない
       `/api/post/${id}`,
       {
         title: title.value,
@@ -76,9 +76,8 @@ const editPost = async () => {
         },
       },
     );
-    // alert('データが正常に更新されました');
-    // TODO うまくDetail側が更新されない
-    router.push({ name: 'postDetail', params: { id } });
+    router.replace({ name: 'postDetail', params: { id } });
+    alert('データが正常に更新されました'); // TODO ちゃんと画面にするかVuetifyでアラート
   } catch (error) {
     console.error('Failed to edit post', error);
   }
