@@ -42,7 +42,6 @@ const getCsrfToken = () => {
   return cookieValue;
 };
 
-// TODO X-XSRF-TOKENヘッダをつける！！！！
 const createPost = async () => {
   try {
     const jwtToken = localStorage.getItem('token');
