@@ -34,9 +34,16 @@ const router = useRouter();
 const title = ref('');
 const content = ref('');
 
+const { id } = route.params;
+
 const fetchPost = async () => {
   try {
-    const response = await axiosInstance.get(`/api/post/${route.params.id}`);
+    const jwtToken = localStorage.getItem('token');
+    const response = await axiosInstance.get(`/api/post/${id}`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
     title.value = response.data.title;
     content.value = response.data.content;
   } catch (error) {
@@ -44,13 +51,36 @@ const fetchPost = async () => {
   }
 };
 
+const getCsrfToken = () => {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('XSRF-TOKEN='))
+    ?.split('=')[1];
+  console.log(`cookie!!${document.cookie}`);
+  console.log(`cookie${cookieValue}`);
+  return cookieValue;
+};
+
 const editPost = async () => {
   try {
-    await axiosInstance.put(`/api/post/${route.params.id}`, {
-      title: title.value,
-      content: content.value,
-    });
-    router.push('/post');
+    const jwtToken = localStorage.getItem('token');
+    axiosInstance.put(
+      `/api/post/${id}`,
+      {
+        title: title.value,
+        content: content.value,
+        userId: '1', // TODO あとでユーザ情報拾う
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          'X-XSRF-TOKEN': getCsrfToken(),
+        },
+      },
+    );
+    alert('データが正常に更新されました');
+    // TODO うまくDetail側が更新されない
+    router.push({ name: 'postDetail', params: { id } });
   } catch (error) {
     console.error('Failed to edit post', error);
   }
