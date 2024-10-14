@@ -39,7 +39,7 @@ const login = async () => {
     const response = await axiosInstance.post('/api/auth/login', {
       email: email.value,
       password: password.value,
-    }, { withCredentials: true }); // TODO これ無くすとどうなる→ログイン移行POST作成できない
+    });
     localStorage.setItem('token', response.data.jwt);
     router.push('/post');
   } catch (error) {
