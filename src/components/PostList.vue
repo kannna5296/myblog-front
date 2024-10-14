@@ -18,7 +18,7 @@ const fetchPosts = () => {
   })
     .then((response) => {
       console.log(response);
-      posts.value.push(response.data);
+      posts.value.push(...response.data);
     })
     .catch((error) => {
       console.error('Failed to fetch posts', error);
