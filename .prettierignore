@@ -9,3 +9,5 @@ package-lock.json
 !*.yml
 !*.yaml
 !*.md
+
+src/repositories/api-docs.yaml 
