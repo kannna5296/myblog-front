@@ -1,0 +1,319 @@
+openapi: 3.0.1
+info:
+  title: API Title
+  description: "My API. yaml→ [http://localhost:8080/api/v3/api-docs.yaml](http://localhost:8080/api/v3/api-docs.yaml)"
+  version: "0.0"
+servers:
+- url: http://localhost:8080/api
+  description: Generated server url
+tags:
+- name: AUTH
+  description: 認証管理API
+- name: POST
+  description: 投稿管理API
+- name: USER
+  description: ユーザ管理API
+paths:
+  /post/{id}:
+    get:
+      tags:
+      - POST
+      summary: ポスト詳細
+      description: 投稿内容の詳細を取得する
+      operationId: detail
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PostDetailResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PostDetailResponse"
+    put:
+      tags:
+      - POST
+      summary: ポスト更新
+      description: 投稿内容を更新する
+      operationId: edit
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostEditForm"
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+  /user/register:
+    post:
+      tags:
+      - USER
+      summary: ユーザ登録
+      description: ユーザを登録する
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RegisterUserResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RegisterUserResponse"
+  /post:
+    get:
+      tags:
+      - POST
+      summary: ポスト一覧
+      description: 投稿内容の一覧を取得する
+      operationId: index
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostIndexResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostIndexResponse"
+    post:
+      tags:
+      - POST
+      summary: ポスト投稿
+      description: 投稿する
+      operationId: post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostRegisterForm"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PostRegisterResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PostRegisterResponse"
+  /post/{id}/comment:
+    post:
+      tags:
+      - POST
+      summary: ポストに対するコメント投稿
+      description: ポストに対するコメントを投稿する
+      operationId: post_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentRegisterForm"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentRegisterResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentRegisterResponse"
+  /auth/login:
+    post:
+      tags:
+      - AUTH
+      summary: ログイン
+      description: ログインする
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+components:
+  schemas:
+    PostEditForm:
+      required:
+      - content
+      - title
+      - userId
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        userId:
+          type: string
+    RegisterUserRequest:
+      required:
+      - email
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    RegisterUserResponse:
+      required:
+      - userId
+      type: object
+      properties:
+        userId:
+          type: string
+    PostRegisterForm:
+      required:
+      - content
+      - title
+      - userId
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        userId:
+          type: string
+    PostRegisterResponse:
+      required:
+      - postId
+      type: object
+      properties:
+        postId:
+          type: string
+    CommentRegisterForm:
+      required:
+      - content
+      - userId
+      type: object
+      properties:
+        content:
+          type: string
+        userId:
+          type: string
+    CommentRegisterResponse:
+      required:
+      - commentId
+      type: object
+      properties:
+        commentId:
+          type: string
+    LoginRequest:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    LoginResponse:
+      required:
+      - jwt
+      type: object
+      properties:
+        jwt:
+          type: string
+    PostIndexResponse:
+      required:
+      - postId
+      - title
+      type: object
+      properties:
+        postId:
+          type: string
+        title:
+          type: string
+    CommentDetailDesponse:
+      required:
+      - content
+      - userId
+      type: object
+      properties:
+        content:
+          type: string
+        userId:
+          type: string
+    PostDetailResponse:
+      required:
+      - commentList
+      - content
+      - postId
+      - title
+      type: object
+      properties:
+        postId:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        commentList:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommentDetailDesponse"
