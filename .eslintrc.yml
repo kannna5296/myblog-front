@@ -21,3 +21,5 @@ rules:
     - never
     - js: never
       ts: never
+  no-console: off
+  no-alert: off
