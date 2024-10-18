@@ -27,52 +27,33 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import axiosInstance from '@/router/axios';
+import { PostRepository } from '@/repositories/generated/services/PostRepository';
 
 const route = useRoute();
 const router = useRouter();
 const title = ref('');
 const content = ref('');
 
-const { id } = route.params;
+const id = route.params.id.toString();
 
 const fetchPost = async () => {
-  try {
-    const jwtToken = localStorage.getItem('token');
-    const response = await axiosInstance.get(`/api/post/${id}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
-    title.value = response.data.title;
-    content.value = response.data.content;
-  } catch (error) {
+  await PostRepository.detail({ id }).then((response) => {
+    title.value = response.title;
+    content.value = response.content;
+  }).catch((error) => {
     console.error('Failed to fetch post', error);
-  }
-};
-
-const getCsrfToken = () => {
-  const cookieValue = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('XSRF-TOKEN='))
-    ?.split('=')[1];
-  return cookieValue;
+  });
 };
 
 const editPost = async () => {
   try {
-    const jwtToken = localStorage.getItem('token');
-    await axiosInstance.put( // awaitしないと詳細画面でうまく最新化されない
-      `/api/post/${id}`,
+    await PostRepository.edit(
       {
-        title: title.value,
-        content: content.value,
-        userId: '1', // TODO あとでユーザ情報拾う
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-          'X-XSRF-TOKEN': getCsrfToken(),
+        id,
+        requestBody: {
+          title: title.value,
+          content: content.value,
+          userId: '1', // TODO ここはログインユーザーのIDを入れる
         },
       },
     );
