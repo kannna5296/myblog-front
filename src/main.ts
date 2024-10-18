@@ -23,3 +23,4 @@ OpenAPI.HEADERS = async () => {
     'X-XSRF-TOKEN': getCsrfToken() || '',
   };
 };
+OpenAPI.WITH_CREDENTIALS = true;
