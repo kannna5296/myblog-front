@@ -23,4 +23,5 @@ OpenAPI.HEADERS = async () => {
     'X-XSRF-TOKEN': getCsrfToken() || '',
   };
 };
+// SET-COOKIEをブラウザが受け取るための設定
 OpenAPI.WITH_CREDENTIALS = true;

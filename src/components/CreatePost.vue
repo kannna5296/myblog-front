@@ -37,7 +37,6 @@ const content = ref('');
 
 const router = useRouter();
 
-// TODO なんか前段でSETCOOKIEされるけどcookieがブラウザに保存されなくなった、要修正
 const createPost = async () => {
   try {
     const response = await PostRepository.post({
