@@ -119,12 +119,3 @@ export class PostRepository {
     });
   }
 }
-
-// TODO axiosの共通設定にして、どのHogeRepositoryからも常に呼ばれるようにする.
-OpenAPI.HEADERS = async () => {
-  const token = localStorage.getItem('token'); // トークンを取得
-  return {
-    Authorization: `Bearer ${token}`,
-    'X-Custom-Header': 'your-custom-header-value',
-  };
-};

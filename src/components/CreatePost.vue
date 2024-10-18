@@ -29,40 +29,24 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import axiosInstance from '@/router/axios';
 import { useRouter } from 'vue-router';
+import { PostRepository } from '@/repositories/generated/services/PostRepository';
 
 const title = ref('');
 const content = ref('');
 
 const router = useRouter();
 
-const getCsrfToken = () => {
-  const cookieValue = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('XSRF-TOKEN='))
-    ?.split('=')[1];
-  return cookieValue;
-};
-
 const createPost = async () => {
   try {
-    const jwtToken = localStorage.getItem('token');
-    const response = await axiosInstance.post(// awaitしないと詳細画面でうまく最新化されない
-      '/api/post',
-      {
+    const response = await PostRepository.post({
+      requestBody: {
         title: title.value,
         content: content.value,
-        userId: '1', // TODO あとでユーザ情報拾う
+        userId: '1',
       },
-      {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-          'X-XSRF-TOKEN': getCsrfToken(),
-        },
-      },
-    );
-    router.replace({ name: 'postDetail', params: { id: response.data.postId } });
+    });
+    router.replace({ name: 'postDetail', params: { id: response.postId } });
   } catch (error) {
     console.error('Failed to create post', error);
   }

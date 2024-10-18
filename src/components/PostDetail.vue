@@ -8,7 +8,7 @@
       </router-link>
     </div>
     <div>
-      <router-link :to="{ name: 'postEdit', params: { id: post?.id } }">
+      <router-link :to="{ name: 'postEdit', params: { id: post?.postId } }">
         Edit
       </router-link>
     </div>
@@ -18,29 +18,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import axiosInstance from '@/router/axios';
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-}
+import { PostRepository } from '@/repositories/generated/services/PostRepository';
+import { PostDetailResponse } from '@/repositories/generated';
 
 const route = useRoute();
-const post = ref<Post | null>(null);
+const post = ref<PostDetailResponse | null>(null);
+
+const id = route.params.id.toString();
 
 const fetchPost = async () => {
-  try {
-    const jwtToken = localStorage.getItem('token');
-    const response = await axiosInstance.get(`/api/post/${route.params.id}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    });
-    post.value = response.data;
-  } catch (error) {
+  await PostRepository.detail({ id }).then((response) => {
+    post.value = response;
+  }).catch((error) => {
     console.error('Failed to fetch post', error);
-  }
+  });
 };
 
 fetchPost();
