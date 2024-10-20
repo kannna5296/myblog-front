@@ -25,7 +25,7 @@ fetchPosts();
     <h2>Posts</h2>
     <ul>
       <li v-if="posts.length === 0">
-        Loading...
+        投稿がありません！
       </li>
       <li
         v-for="post in posts"
@@ -41,3 +41,9 @@ fetchPosts();
     </router-link>
   </div>
 </template>
+
+<style lang="css">
+ul {
+  list-style: none;
+}
+</style>
