@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { PostRepository } from '@/repositories/generated/services/PostRepository';
-
-interface Post {
-  postId: string;
-  title: string;
-}
+import { PostIndexResponse } from '@/repositories/generated';
 
 // TODO 401だったらログイン画面にリダイレクト。共通処理として作る
-const posts = ref<Post[]>([]);
+const posts = ref<PostIndexResponse[]>([]);
 
 const fetchPosts = async () => {
   await PostRepository.index().then((response) => {
@@ -23,23 +19,40 @@ fetchPosts();
 
 <template>
   <div>
-    <h2>Posts</h2>
-    <ul>
-      <li v-if="posts.length === 0">
-        投稿がありません！
-      </li>
-      <li
-        v-for="post in posts"
-        :key="post.postId"
+    <div class="text-h4">
+      Posts
+    </div>
+    <v-container>
+      <v-list>
+        <!-- 各ポストをカードとして表示 -->
+        <v-card
+          v-for="(post, index) in posts"
+          :key="index"
+          class="mb-4"
+          elevation="2"
+          tag="router-link"
+          :to="`/post/${post.postId}`"
+        >
+          <v-card-content>
+            <!-- タイトル部分 -->
+            <v-card-title>
+              {{ post.title }}
+            </v-card-title>
+          </v-card-content>
+        </v-card>
+      </v-list>
+      <v-btn
+        class="mt-2"
+        color="primary"
+        block
+        :to="'/post/create'"
       >
-        <router-link :to="`/post/${post.postId}`">
-          {{ post.title }}
-        </router-link>
-      </li>
-    </ul>
-    <router-link to="/post/create">
-      投稿する
-    </router-link>
+        投稿する
+      </v-btn>
+    </v-container>
+    <li v-if="posts.length === 0">
+      投稿がありません！
+    </li>
   </div>
 </template>
 
