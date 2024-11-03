@@ -1,27 +1,35 @@
 <template>
   <div>
-    <h2>Login</h2>
-    <form @submit.prevent="login">
-      <div>
-        <label for="email">Email:</label>
-        <input
-          v-model="email"
-          type="email"
-          required
+    <div class="text-h4">
+      Login
+    </div>
+    <v-form>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="email"
+              label="Email"
+              required
+            />
+            <v-text-field
+              v-model="password"
+              label="Password"
+              required
+            />
+          </v-col>
+        </v-row>
+        <v-btn
+          class="mt-2"
+          color="primary"
+          type="submit"
+          block
+          @click="login"
         >
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input
-          v-model="password"
-          type="password"
-          required
-        >
-      </div>
-      <button type="submit">
-        Login
-      </button>
-    </form>
+          Login
+        </v-btn>
+      </v-container>
+    </v-form>
   </div>
 </template>
 
