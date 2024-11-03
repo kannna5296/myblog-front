@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // Vuetify
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
