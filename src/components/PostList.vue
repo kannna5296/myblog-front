@@ -19,10 +19,10 @@ fetchPosts();
 
 <template>
   <div>
-    <div class="text-h4">
-      Posts
-    </div>
     <v-container>
+      <div class="text-h4">
+        Posts
+      </div>
       <v-list>
         <!-- 各ポストをカードとして表示 -->
         <v-card

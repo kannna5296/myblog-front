@@ -1,37 +1,35 @@
 <template>
-  <div>
+  <v-container>
     <div class="text-h4">
       Login
     </div>
     <!-- preventで画面遷移しない https://qiita.com/saywo/items/9ab6e2493785802bf810 -->
     <v-form @submit.prevent>
-      <v-container>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="email"
-              label="Email"
-              required
-            />
-            <v-text-field
-              v-model="password"
-              label="Password"
-              required
-            />
-          </v-col>
-        </v-row>
-        <v-btn
-          class="mt-2"
-          color="primary"
-          type="submit"
-          block
-          @click="login"
-        >
-          Login
-        </v-btn>
-      </v-container>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="email"
+            label="Email"
+            required
+          />
+          <v-text-field
+            v-model="password"
+            label="Password"
+            required
+          />
+        </v-col>
+      </v-row>
+      <v-btn
+        class="mt-2"
+        color="primary"
+        type="submit"
+        block
+        @click="login"
+      >
+        Login
+      </v-btn>
     </v-form>
-  </div>
+  </v-container>
 </template>
 
 <script setup lang="ts">
