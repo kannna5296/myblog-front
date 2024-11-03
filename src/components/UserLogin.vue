@@ -3,7 +3,8 @@
     <div class="text-h4">
       Login
     </div>
-    <v-form>
+    <!-- preventで画面遷移しない https://qiita.com/saywo/items/9ab6e2493785802bf810 -->
+    <v-form @submit.prevent>
       <v-container>
         <v-row>
           <v-col>
