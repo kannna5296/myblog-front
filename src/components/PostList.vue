@@ -7,6 +7,7 @@ interface Post {
   title: string;
 }
 
+// TODO 401だったらログイン画面にリダイレクト。共通処理として作る
 const posts = ref<Post[]>([]);
 
 const fetchPosts = async () => {
