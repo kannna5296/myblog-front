@@ -36,10 +36,10 @@ const headers = [
           <tr>
             <td>
               <router-link
-                :to="{ name: 'post Detail', params: { id: item?.postId } }"
+                :to="{ name: 'postDetail', params: { id: item?.postId } }"
                 class="link-style"
               >
-                {{ item.postId }}
+                {{ item.title }}
               </router-link>
             </td>
             <td>{{ item.postId }}</td>
@@ -79,7 +79,6 @@ const headers = [
 
 .link-style {
   color: blue; /* 青文字 */
-  text-transform: uppercase; /* 大文字 */
   text-decoration: none; /* リンクの下線を消す */
 }
 
