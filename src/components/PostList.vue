@@ -23,39 +23,38 @@ const headers = [
 
 <template>
   <v-container>
-    <v-card
-      title="投稿一覧"
-      flat
-    >
-      <v-data-table
-        :headers="headers"
-        :items="items"
-        class="elevation-1"
-      >
-        <template #item="{ item }">
-          <tr>
-            <td>
-              <router-link
-                :to="{ name: 'postDetail', params: { id: item?.postId } }"
-                class="link-style"
-              >
-                {{ item.title }}
-              </router-link>
-            </td>
-            <td>{{ item.postId }}</td>
-          </tr>
-        </template>
-      </v-data-table>
-
+    <div class="d-flex flex-row">
+      <div class="text-h4 ma-4">
+        投稿一覧
+      </div>
+      <!-- TODO outlined/fulfill、色を差し替えられるようにコンポーネント化したい -->
       <v-btn
-        class="mt-2"
-        color="primary"
-        block
+        class="ma-4 w-10 custom-btn"
+        outlined
         :to="'/post/create'"
       >
         投稿する
       </v-btn>
-    </v-card>
+    </div>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      class="elevation-1"
+    >
+      <template #item="{ item }">
+        <tr>
+          <td>
+            <router-link
+              :to="{ name: 'postDetail', params: { id: item?.postId } }"
+              class="link-style"
+            >
+              {{ item.title }}
+            </router-link>
+          </td>
+          <td>{{ item.postId }}</td>
+        </tr>
+      </template>
+    </v-data-table>
   </v-container>
   <li v-if="items.length === 0">
     投稿がありません！
@@ -86,4 +85,9 @@ const headers = [
   text-decoration: underline; /* ホバー時に下線 */
 }
 
+.custom-btn {
+  color: blue;  /* 文字を青色に */
+  background-color: white; /* 背景を白に */
+  border: 1px solid blue; /* 枠線を青に */
+}
 </style>
