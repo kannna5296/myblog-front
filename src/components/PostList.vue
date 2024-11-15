@@ -8,38 +8,30 @@ const posts = ref<PostIndexResponse[]>([]);
 
 const fetchPosts = async () => {
   await PostRepository.index().then((response) => {
-    posts.value.push(...response);
+    posts.value = response;
   }).catch((error) => {
     console.error('Failed to fetch posts', error);
   });
 };
 
 fetchPosts();
+
+const headers = [
+  { align: 'center', title: 'タイトル', value: 'title' } as const,
+  { align: 'center', title: 'ID', value: 'postId' } as const,
+];
 </script>
 
 <template>
   <v-container>
     <div class="text-h4">
-      Posts
+      投稿
     </div>
-    <v-list>
-      <!-- 各ポストをカードとして表示 -->
-      <v-card
-        v-for="(post, index) in posts"
-        :key="index"
-        class="mb-4"
-        elevation="2"
-        tag="router-link"
-        :to="`/post/${post.postId}`"
-      >
-        <v-card-content>
-          <!-- タイトル部分 -->
-          <v-card-title>
-            {{ post.title }}
-          </v-card-title>
-        </v-card-content>
-      </v-card>
-    </v-list>
+    <v-data-table
+      :headers="headers"
+      :items="posts"
+      class="elevation-1"
+    />
     <v-btn
       class="mt-2"
       color="primary"
@@ -54,5 +46,18 @@ fetchPosts();
   </li>
 </template>
 
-<style lang="css">
+<style lang="css" >
+.v-data-table tbody tr:nth-child(odd) {
+  background-color: #f6f7f7; /* 書こうボーダーの色*/
+}
+
+.v-data-table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* 白 */
+}
+
+.v-data-table thead th {
+  border: 1px solid #c4c4c7; /* ヘッダの縁線を太く */
+  border-bottom: 1px solid #c4c4c7; /* ヘッダの縁線を太く */
+}
+/* border-bottom: thin solid rgba(var(--v-border-color), var(--v-border-opacity));が邪魔なので消したい */
 </style>
