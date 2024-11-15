@@ -4,11 +4,11 @@ import { PostRepository } from '@/repositories/generated/services/PostRepository
 import { PostIndexResponse } from '@/repositories/generated';
 
 // TODO 401だったらログイン画面にリダイレクト。共通処理として作る
-const items = ref<PostIndexResponse[]>([]);
+const posts = ref<PostIndexResponse[]>([]);
 
 const fetchPosts = async () => {
   await PostRepository.index().then((response) => {
-    items.value.push(...response);
+    posts.value.push(...response);
   }).catch((error) => {
     console.error('Failed to fetch posts', error);
   });
@@ -38,7 +38,7 @@ const headers = [
     </div>
     <v-data-table
       :headers="headers"
-      :items="items"
+      :items="posts"
       class="elevation-1"
     >
       <template #item="{ item }">
@@ -56,7 +56,7 @@ const headers = [
       </template>
     </v-data-table>
   </v-container>
-  <li v-if="items.length === 0">
+  <li v-if="posts.length === 0">
     投稿がありません！
   </li>
 </template>
