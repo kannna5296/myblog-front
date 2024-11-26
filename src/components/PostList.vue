@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { PostRepository } from '@/repositories/generated/services/PostRepository';
 import { PostIndexResponse } from '@/repositories/generated';
+import { formatDateString } from '@/utils';
 
 // TODO 401だったらログイン画面にリダイレクト。共通処理として作る
 const posts = ref<PostIndexResponse[]>([]);
@@ -18,7 +19,9 @@ fetchPosts();
 const headers = [
   { align: 'center', title: 'タイトル', value: 'title' } as const,
   { align: 'center', title: 'ID', value: 'postId' } as const,
+  { align: 'center', title: '日付', value: 'createdAt' } as const,
 ];
+
 </script>
 
 <template>
@@ -52,6 +55,7 @@ const headers = [
             </router-link>
           </td>
           <td>{{ item.postId }}</td>
+          <td>{{ formatDateString(item.createdAt) }}</td>
         </tr>
       </template>
     </v-data-table>
