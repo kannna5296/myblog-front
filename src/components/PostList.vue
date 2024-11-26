@@ -46,6 +46,7 @@ const headers = [
     >
       <template #item="{ item }">
         <tr>
+          <!-- TODO tdの幅をもうちょい整理したい（日付が長すぎる） -->
           <td>
             <router-link
               :to="{ name: 'postDetail', params: { id: item?.postId } }"
