@@ -5,5 +5,6 @@
 export type PostIndexResponse = {
   postId: string;
   title: string;
+  createdAt: string;
 };
 
