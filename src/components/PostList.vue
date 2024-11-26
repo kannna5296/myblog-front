@@ -65,7 +65,7 @@ const headers = [
   </li>
 </template>
 
-<style lang="css" >
+<style lang="css">
 .v-data-table tbody tr:nth-child(odd) {
   background-color: #f6f7f7; /* 書こうボーダーの色*/
 }
